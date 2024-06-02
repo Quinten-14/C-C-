@@ -17,59 +17,25 @@ void    Account::CreateAccount(void)
 
     this->m_createDate = std::time(nullptr);
 
-    // This whole thing with while loops seems very verbose so currently thinking of a better way
-    while (true)
-    {
-        std::cout << "Enter Your Full Name: ";
-        if (!std::getline(std::cin, this->m_fullName) || this->m_fullName.empty())
-        {
-            if (std::cin.eof())
-            {
-                std::cout << "\nExiting\n";
-                std::exit(EXIT_SUCCESS);
+    auto getInput = [](const std::string& prompt, std::string& input) {
+        while (true) {
+            std::cout << prompt;
+            if (!std::getline(std::cin, input) || input.empty()) {
+                if (std::cin.eof()) {
+                    std::cout << "\nExiting\n";
+                    std::exit(EXIT_SUCCESS);
+                }
+                std::cin.clear();
+                std::cout << "Invalid input. Please try again.\n";
+            } else {
+                break;
             }
-            std::cin.clear();
-            std::cout << "Invalid Input. Input Can't Be Empty\n";
         }
-        else
-            break;
-    }
+    };
 
-    while (true)
-    {
-        std::cout << "Enter Your Email: ";
-        if (!std::getline(std::cin, this->m_email) || this->m_email.empty())
-        {
-            if (std::cin.eof())
-            {
-                std::cout << "\nExiting\n";
-                std::exit(EXIT_SUCCESS);
-            }
-            std::cin.clear();
-            std::cout << "Invalid Input. Input Can't Be Empty\n";
-        }
-        else
-            break;
-    }
-
-    while (true)
-    {
-        std::cout << "Enter Your Password: ";
-        if (!std::getline(std::cin, this->m_password) || this->m_password.empty())
-        {
-            if (std::cin.eof())
-            {
-                std::cout << "\nExiting\n";
-                std::exit(EXIT_SUCCESS);
-            }
-            std::cin.clear();
-            std::cout << "Invalid Input. Input Can't Be Empty\n";
-        }
-        else
-        {
-            break;
-        }
-    }
+    getInput("Enter Full Name: ", this->m_fullName);
+    getInput("Enter Email: ", this->m_email);
+    getInput("Enter Password: ", this->m_password);
 
     this->m_balance = 0;
     this->m_accountNumber = 0; // Placeholder for now
