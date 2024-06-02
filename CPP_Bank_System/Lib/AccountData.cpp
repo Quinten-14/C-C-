@@ -19,8 +19,8 @@ void    AccountHandler(void)
             Account account;
 
             account.CreateAccount();
-
-            account.DebugView();
+            if (DEBUG_MODE)
+                account.DebugView();
             break;
         }
         else if (input.compare("SIGNIN") == 0)

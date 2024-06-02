@@ -4,6 +4,10 @@ Account::Account(void)
 {
 }
 
+// Todo list:
+// - Adding check for dup emails
+// - Hash Password
+
 void    Account::CreateAccount(void)
 {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
