@@ -4,7 +4,10 @@
 class   Account
 {
     public:
-        // Dont know yet
+        // Constructor
+        Account(void);
+
+        void    CreateAccount(void);
 
     // General Data structure for accounts
     private:

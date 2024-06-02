@@ -11,6 +11,7 @@ class  Transaction
         int     m_to;
         double  m_amount;
         std::string m_message;
+        std::time_t m_transactionDate;
 };
 
 #endif
