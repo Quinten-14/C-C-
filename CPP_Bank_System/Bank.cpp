@@ -4,5 +4,5 @@
 
 int main(void)
 {
-    Account account;
+    AccountHandler();
 }

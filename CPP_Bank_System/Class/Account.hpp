@@ -9,6 +9,8 @@ class   Account
 
         void    CreateAccount(void);
 
+        void    DebugView(void);
+
     // General Data structure for accounts
     private:
         int     m_id;
