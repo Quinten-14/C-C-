@@ -32,3 +32,6 @@ void    AccountHandler(void)
         std::cin >> input;
     }
 }
+
+// TODO:
+// - Change the cin to getline so no need to clear the buffer

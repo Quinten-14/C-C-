@@ -20,6 +20,12 @@ class   Account
         std::string m_email;
         std::string m_fullName;
         std::string m_password; // Later should be hashed so it's safe
+        
+
+    // Private Functions
+    private:
+        void    saveAccount(void) const;
+        int     getNextId(void);
 };
 
 #endif

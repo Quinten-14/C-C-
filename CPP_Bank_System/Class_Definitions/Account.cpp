@@ -1,4 +1,9 @@
 #include "../Bank.hpp"
+#include <cstdlib>
+#include <fstream>
+#include <ios>
+#include <ostream>
+#include <sstream>
 
 Account::Account(void)
 {
@@ -7,16 +12,19 @@ Account::Account(void)
 // Todo list:
 // - Adding check for dup emails
 // - Hash Password
+// - Get right ID's
+// - Get original Account Number
+// - Save Accounts to a file
 
 void    Account::CreateAccount(void)
 {
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Find a way to do it without this
 
-    // TODO: Take the first available ID
-    this->m_id = 0;
+    this->m_id = Account::getNextId();
 
     this->m_createDate = std::time(nullptr);
 
+    // Is somewhat portable but don't really like the auto keyword (might take a look at it later)
     auto getInput = [](const std::string& prompt, std::string& input) {
         while (true) {
             std::cout << prompt;
@@ -38,8 +46,8 @@ void    Account::CreateAccount(void)
     getInput("Enter Password: ", this->m_password);
 
     this->m_balance = 0;
-    this->m_accountNumber = 0; // Placeholder for now
-    // TODO: Accounts should be saved to a file for use on next runtime
+    this->m_accountNumber = 0;
+    Account::saveAccount();
 }
 
 void    Account::DebugView(void)
@@ -53,4 +61,41 @@ void    Account::DebugView(void)
     std::cout << "Account Create Date: " << ctime(&this->m_createDate) << std::flush;
     std::cout << "Account Number: " << this->m_accountNumber << std::endl;
     std::cout << "\n<----- Debug View ----->\n" << std::endl;
+}
+
+// Not yet sure if this is the final way i want it
+void    Account::saveAccount(void) const
+{
+    std::ofstream file("Data/Accounts.txt", std::ios_base::app);
+    if (file.is_open())
+        file << m_id << " " << m_accountNumber << " " << m_balance << " " << m_createDate << " " << m_email << " " << m_fullName << " " << m_password << std::endl;
+    else
+    {
+        std::cerr << "Failed to open accounts file for writing" << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+}
+
+// works for now
+int     Account::getNextId(void)
+{
+    int highestID = -1;
+
+    std::ifstream file("Data/Accounts.txt");
+    if (file.is_open())
+    {
+        std::string line;
+        while (std::getline(file, line)) {
+            std::istringstream iss(line);
+            int id;
+            iss >> id;
+            if (id > highestID) {
+                highestID = id;
+            }
+        }
+        file.close();
+    }
+    else
+        return 0;
+    return (highestID + 1);
 }
