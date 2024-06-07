@@ -1,19 +1,18 @@
 #ifndef BANK_HPP
 # define BANK_HPP
 
-#include <iostream>
 #include <string>
-#include <ctime>
+#include <iostream>
+#include <cstdlib>
+#include <fstream>
 #include <ios>
-#include <limits>
+#include <sstream>
+
+#include "./Lib/UserInput.h"
 
 // Custom Classes
-#include "./Class/Account.hpp"
-#include "./Class/Transaction.hpp"
+#include "./Class/UserAccount.hpp"
 
-# define DEBUG_MODE true
-
-// Custom Functions
-void    AccountHandler(void);
+// Functions
 
 #endif
