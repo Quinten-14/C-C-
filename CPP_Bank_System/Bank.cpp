@@ -4,5 +4,5 @@ int main(void)
 {
     UserAccount account;
 
-    account.SetupAccount();
+    AccountHandler(account);
 }

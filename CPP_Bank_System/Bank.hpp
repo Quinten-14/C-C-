@@ -14,5 +14,6 @@
 #include "./Class/UserAccount.hpp"
 
 // Functions
+void    AccountHandler(UserAccount account);
 
 #endif

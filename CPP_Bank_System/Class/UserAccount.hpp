@@ -5,6 +5,7 @@ class   UserAccount
 {
     public:
         void SetupAccount();
+        void LoginLogic();
 
     private:
         std::string m_FullName;
@@ -17,6 +18,8 @@ class   UserAccount
         void    GetSignUpInfo();
         void    SaveAccountToFile();
         void    GetEmailUserInput();
+        std::pair<std::string, std::string>GetLoginCredentials();
+        void    AttemptLogin(const std::pair<std::string, std::string>& credentials);
         bool    EmailAlreadyExistsChecker(std::string& email);
         int     GetUniqueUserID();
 };
