@@ -5,4 +5,5 @@ int main(void)
     UserAccount account;
 
     AccountHandler(account);
+    SessionLoop(account);
 }

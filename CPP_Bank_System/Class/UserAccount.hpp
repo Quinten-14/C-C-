@@ -6,6 +6,8 @@ class   UserAccount
     public:
         void SetupAccount();
         void LoginLogic();
+        void DepositMoney();
+        void WithdrawMoney();
 
     private:
         std::string m_FullName;

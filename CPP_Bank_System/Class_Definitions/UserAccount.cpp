@@ -1,5 +1,4 @@
 #include "../Bank.hpp"
-#include <utility>
 
 bool UserAccount::EmailAlreadyExistsChecker(std::string& email)
 {
@@ -111,7 +110,6 @@ void UserAccount::AttemptLogin(const std::pair<std::string, std::string>&credent
             if (userEmail == email && userPassword == password)
             {
                 std::cout << "Login successful!" << std::endl;
-                // Load user account data if needed
                 this->m_UserID = id;
                 this->m_FullName = fullName;
                 this->m_UserEmail = userEmail;
@@ -124,7 +122,7 @@ void UserAccount::AttemptLogin(const std::pair<std::string, std::string>&credent
     }
     else
     {
-        std::cerr << "Failed to open accounts file for reading" << std::endl;
+        std::cerr << "Failed to open accounts file for reading. Maybe there are no accounts." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 }
@@ -144,4 +142,27 @@ void UserAccount::LoginLogic()
         else
             std::cout << "You reached the max login tries." << std::endl;
     }
+}
+
+void UserAccount::DepositMoney()
+{
+    int amount;
+    GetUserInput("How much money do you want to deposit? ", amount);
+
+    this->m_MoneyBalance += amount;
+    std::cout << "New Balance: " << this->m_MoneyBalance << std::endl;
+}
+
+void UserAccount::WithdrawMoney()
+{
+    int amount;
+    GetUserInput("How much money do you want to withdraw? ", amount);
+
+    if (amount <= this->m_MoneyBalance)
+    {
+        m_MoneyBalance -= amount;
+        std::cout << "New Balance: " << this->m_MoneyBalance << std::endl;
+    }
+    else
+        std::cout << "You dont have enough balance. Your balance is: " << this->m_MoneyBalance << std::endl;
 }

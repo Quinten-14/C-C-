@@ -15,5 +15,6 @@
 
 // Functions
 void    AccountHandler(UserAccount account);
+void    SessionLoop(UserAccount account);
 
 #endif
