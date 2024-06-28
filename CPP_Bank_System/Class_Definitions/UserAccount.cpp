@@ -1,4 +1,5 @@
 #include "../Bank.hpp"
+#include <vector>
 
 bool UserAccount::EmailAlreadyExistsChecker(std::string& email)
 {
@@ -115,6 +116,7 @@ void UserAccount::AttemptLogin(const std::pair<std::string, std::string>&credent
                 this->m_UserEmail = userEmail;
                 this->m_UserPassword = userPassword;
                 this->m_MoneyBalance = moneyBalance;
+                file.close();
                 return;
             }
         }
@@ -165,4 +167,9 @@ void UserAccount::WithdrawMoney()
     }
     else
         std::cout << "You dont have enough balance. Your balance is: " << this->m_MoneyBalance << std::endl;
+}
+
+void UserAccount::UpdateAccountFileData()
+{
+
 }

@@ -8,6 +8,7 @@ class   UserAccount
         void LoginLogic();
         void DepositMoney();
         void WithdrawMoney();
+        void UpdateAccountFileData();
 
     private:
         std::string m_FullName;

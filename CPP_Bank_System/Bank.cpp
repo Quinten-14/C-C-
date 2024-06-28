@@ -6,4 +6,5 @@ int main(void)
 
     AccountHandler(account);
     SessionLoop(account);
+    account.UpdateAccountFileData();
 }
