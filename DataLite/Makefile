@@ -1,7 +1,7 @@
 NAME = DataLite
 CC = g++
 RM = rm -rf
-FLAGS = -Wall -Werror -Wextra -std=c++98 -g
+FLAGS = -Wall -Werror -Wextra -std=c++11 -g
 
 # Find all .cpp files and generate corresponding .o files
 SRC = $(shell find . -name "*.cpp")
